@@ -6,10 +6,14 @@ hbs.registerPartials(`${__dirname}/views/partials`);
 app.set('view engine', 'hbs');
 app.use(express.static(`${__dirname}/public`));
 
+
+hbs.registerHelper('year', () => {
+    return new Date().getFullYear();
+});
+
 app.get('/', (req, res) => {
     res.render('index.hbs', {
         title: 'Index page',
-        year: new Date().getFullYear(),
         welcomemessage: 'Hello world!'
     });
 });
@@ -17,8 +21,7 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     //res.send('About page');
     res.render('about.hbs', {
-        title: 'About page',
-        year: new Date().getFullYear()
+        title: 'About page'
     });
 });
 
